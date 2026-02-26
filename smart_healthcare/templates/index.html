@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Healthcare Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h2>Smart Healthcare Early Risk Prediction</h2>
+
+<div class="form-container">
+    <input type="number" id="age" placeholder="Age">
+    <input type="number" id="bmi" placeholder="BMI">
+    <input type="number" id="glucose" placeholder="Glucose Level">
+    <input type="number" id="bp" placeholder="Blood Pressure">
+    <input type="number" id="stress" placeholder="Stress Score (0-100)">
+    
+    <button onclick="predict()">Predict Risk</button>
+</div>
+
+<div id="result"></div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
