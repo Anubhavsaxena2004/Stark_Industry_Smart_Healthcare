@@ -3,25 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Healthcare Prediction</title>
+    <title>Smart Healthcare Early Risk Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="hero-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <h1>Smart Healthcare</h1>
+            <p class="subtitle">Early Risk Prediction System</p>
+        </div>
+    </div>
 
-<h2>Smart Healthcare Early Risk Prediction</h2>
+    <div class="main-container">
+        <div class="form-container">
+            <div class="form-header">
+                <i class="fa-solid fa-clipboard-list"></i>
+                <h2>Health Assessment</h2>
+                <p>Enter your health metrics for risk prediction</p>
+            </div>
+            
+            <form id="healthForm" onsubmit="return false;">
+                <div class="input-group">
+                    <label for="age">
+                        <i class="fa-solid fa-user"></i>
+                        Age
+                    </label>
+                    <input type="number" id="age" placeholder="e.g., 35" min="0" max="120">
+                    <span class="input-hint">Years</span>
+                </div>
 
-<div class="form-container">
-    <label>Age<br><input type="number" id="age" placeholder="Age" min="0"></label>
-    <label>BMI<br><input type="number" id="bmi" placeholder="BMI" step="0.1" min="0"></label>
-    <label>Glucose Level<br><input type="number" id="glucose" placeholder="Glucose Level" min="0"></label>
-    <label>Blood Pressure<br><input type="number" id="bp" placeholder="Blood Pressure" min="0"></label>
-    <label>Stress Score (0-100)<br><input type="number" id="stress" placeholder="Stress Score (0-100)" min="0" max="100"></label>
-    
-    <button id="predictBtn" onclick="predict()">Predict Risk</button>
-</div>
+                <div class="input-group">
+                    <label for="bmi">
+                        <i class="fa-solid fa-weight-hanging"></i>
+                        BMI
+                    </label>
+                    <input type="number" id="bmi" placeholder="e.g., 24.5" step="0.1" min="0">
+                    <span class="input-hint">Body Mass Index</span>
+                </div>
 
-<div id="result"></div>
+                <div class="input-group">
+                    <label for="glucose">
+                        <i class="fa-solid fa-droplet"></i>
+                        Glucose Level
+                    </label>
+                    <input type="number" id="glucose" placeholder="e.g., 100" min="0">
+                    <span class="input-hint">mg/dL</span>
+                </div>
 
-<script src="/static/script.js"></script>
+                <div class="input-group">
+                    <label for="bp">
+                        <i class="fa-solid fa-gauge-high"></i>
+                        Blood Pressure
+                    </label>
+                    <input type="number" id="bp" placeholder="e.g., 120/80" min="0">
+                    <span class="input-hint">mmHg</span>
+                </div>
+
+                <div class="input-group">
+                    <label for="stress">
+                        <i class="fa-solid fa-brain"></i>
+                        Stress Score
+                    </label>
+                    <input type="range" id="stress" min="0" max="100" value="50" oninput="updateStressValue(this.value)">
+                    <div class="range-labels">
+                        <span>0</span>
+                        <span id="stressValue">50</span>
+                        <span>100</span>
+                    </div>
+                </div>
+
+                <button type="button" id="predictBtn" onclick="predict()">
+                    <span class="btn-text">Predict Risk</span>
+                    <span class="btn-icon"><i class="fa-solid fa-calculator"></i></span>
+                    <div class="btn-loader"></div>
+                </button>
+            </form>
+        </div>
+
+        <div id="result" class="result-container hidden">
+            <div class="result-header">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Prediction Results</h3>
+            </div>
+            <div class="result-cards">
+                <div class="result-card" id="heartRiskCard">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div class="card-content">
+                        <h4>Heart Risk</h4>
+                        <div class="risk-bar">
+                            <div class="risk-fill" id="heartRiskBar"></div>
+                        </div>
+                        <p class="risk-percentage" id="heartRiskPercent">0%</p>
+                    </div>
+                </div>
+                <div class="result-card" id="diabetesRiskCard">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-syringe"></i>
+                    </div>
+                    <div class="card-content">
+                        <h4>Diabetes Risk</h4>
+                        <div class="risk-bar">
+                            <div class="risk-fill" id="diabetesRiskBar"></div>
+                        </div>
+                        <p class="risk-percentage" id="diabetesRiskPercent">0%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
 </body>
 </html>
