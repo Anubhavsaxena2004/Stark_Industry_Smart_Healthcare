@@ -9,13 +9,13 @@
 <h2>Smart Healthcare Early Risk Prediction</h2>
 
 <div class="form-container">
-    <input type="number" id="age" placeholder="Age">
-    <input type="number" id="bmi" placeholder="BMI">
-    <input type="number" id="glucose" placeholder="Glucose Level">
-    <input type="number" id="bp" placeholder="Blood Pressure">
-    <input type="number" id="stress" placeholder="Stress Score (0-100)">
+    <label>Age<br><input type="number" id="age" placeholder="Age" min="0"></label>
+    <label>BMI<br><input type="number" id="bmi" placeholder="BMI" step="0.1" min="0"></label>
+    <label>Glucose Level<br><input type="number" id="glucose" placeholder="Glucose Level" min="0"></label>
+    <label>Blood Pressure<br><input type="number" id="bp" placeholder="Blood Pressure" min="0"></label>
+    <label>Stress Score (0-100)<br><input type="number" id="stress" placeholder="Stress Score (0-100)" min="0" max="100"></label>
     
-    <button onclick="predict()">Predict Risk</button>
+    <button id="predictBtn" onclick="predict()">Predict Risk</button>
 </div>
 
 <div id="result"></div>
